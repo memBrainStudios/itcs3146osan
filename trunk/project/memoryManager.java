@@ -7,7 +7,8 @@
 
 public class memoryManager {
 
-	public static void main (String args[]) {		
+	public memoryManager()
+	{	
 		
 	}
 }
