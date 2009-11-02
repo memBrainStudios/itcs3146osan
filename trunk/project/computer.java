@@ -7,6 +7,7 @@
 public class computer {
 	command[] memory;
 	command[] cache;
+	device[] devices[];
 	int memAccessTime;
 	int storageAccessTime;
 
