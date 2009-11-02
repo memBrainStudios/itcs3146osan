@@ -1,0 +1,53 @@
+#summary A quick outline I typed up for the way our program will run.
+
+= Introduction =
+
+This is a break down of what the classes will do in our program.
+
+
+= Details =
+
+*Assumptions*
+	All memory will be measured in 32-bit sizes
+	All commands will take 32-bits of memory to be stored
+
+
+*Job Psuedo Language*
+	Commands
+		process line
+		for loop start:number of iterations
+		for loop end:start line number
+		goto:line number
+		call device:device name
+
+	Command Data Struct
+		String command
+		int iArg
+		String sArg
+
+*Computer*
+	Memory (an array of commands)
+	Cache ?(an array of commands)
+	Devices (an array of Devices)
+	CPU Cycle (an int that states the curent cycle of the CPU (starting from 0 when the program starts)
+
+	Device Data Struct
+		String name
+		int responseTime //response time in CPU cycles
+
+*Memory Manager*
+	Functions
+		Line In Cache (job #, line #)	//returns true if the current line is in cache, else return false
+		Line In Memory (job #, line #)	//returns true if the current line is in Memory, else return false
+		Load To Memory (job #, Line #)	//loads the current Line into memory from secondary storage
+		Load To Cache (job #, Line #)	//loads the current Line into cache from memory
+		Get Line (job #, line #)	//returns the cache memory address of the specified line, and handles memory swaping
+
+*Process Manager*
+	Description
+		Will Keep track of all active processes/jobs and what line they are on (in processing)
+		Will allocate the CPU to the jobs
+
+	Function
+		Continue Job	//will return true if the currently processing job is to continue processing in the CPU
+		Load Job	//will return the job that is to be loaded for processing by the CPU 
