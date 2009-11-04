@@ -2,7 +2,7 @@ package virtualMachine.devices;
 
 import virtualMachine.Device;
 
-public class Processor implements Device {
+public class AudioDevice implements Device {
 
 	@Override
 	public void busIn(String line) {
