@@ -23,6 +23,9 @@ public class computer {
 		init(memSize, cacheSize, inMemoryAccessTime, inStorageAccessTime);
 	}
 	
+	/*
+	 * initialization
+	 */
 	private void init(int memSize, int cacheSize,  int inMemAccess, int inStoAccess)
 	{		
 		memory = new command[memSize];
