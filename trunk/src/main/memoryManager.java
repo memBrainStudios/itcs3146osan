@@ -7,9 +7,9 @@ package main;
  */
 
 
-public class memoryManager {
+public class MemoryManager {
 
-	public memoryManager()
+	public MemoryManager()
 	{	
 	}
 	
@@ -50,9 +50,9 @@ public class memoryManager {
 	/*
 	 * gets the specified line from cache
 	 */
-	public command getLine(int jobNumber, int lineNumber)
+	public Command getLine(int jobNumber, int lineNumber)
 	{
 		//returns the cache memory address of the specified line, and handles memory swaping*/
-		return new command("");
+		return new Command("");
 	}
 }

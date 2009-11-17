@@ -7,20 +7,20 @@ package main;
  */
 
 
-public class job {
-	private command[] lines;
+public class Job {
+	private Command[] lines;
 	public int currentLine;
 
-	public job(int numLines)
+	public Job(int numLines)
 	{		
-		lines = new command[numLines];
+		lines = new Command[numLines];
 		currentLine = 0;
 	}
 	
 	/*
 	 * returns the command at a specific line of code
 	 */
-	public command getLine(int lineNum)
+	public Command getLine(int lineNum)
 	{
 		if(lineNum<lines.length)
 		{
@@ -36,7 +36,7 @@ public class job {
 	/*
 	 * used to load in the next line of code
 	 */
-	public void loadLine(int lineNum, command inCommand)
+	public void loadLine(int lineNum, Command inCommand)
 	{
 		if(lineNum<lines.length)
 		{
@@ -61,7 +61,7 @@ public class job {
 	/*
 	 * returns the current lines command
 	 */
-	public command getCurrentLine()
+	public Command getCurrentLine()
 	{
 		return lines[currentLine];
 	}

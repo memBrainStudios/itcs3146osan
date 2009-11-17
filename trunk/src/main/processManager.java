@@ -6,9 +6,9 @@ package main;
  */
 
 
-public class processManager {
+public class ProcessManager {
 
-	public processManager()
+	public ProcessManager()
 	{
 	}
 	

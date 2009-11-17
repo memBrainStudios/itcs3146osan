@@ -9,15 +9,15 @@ package main;
 
 
 public class G4Final {
-	public static job[] jList;
-	public static computer setup;
+	public static Job[] jList;
+	public static Computer setup;
 	
-	public static processManager pm;
-	public static memoryManager mm;
+	public static ProcessManager pm;
+	public static MemoryManager mm;
 
 	public static void main (String args[])
 	{		
-		jList = new job[5];
+		jList = new Job[5];
 		
 	}
 	
