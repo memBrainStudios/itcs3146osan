@@ -6,18 +6,29 @@ package main;
  *      
  * 		
  */
+import java.io.*;
 
 
 public class G4Final {
 	public static job[] jList;
+	public static device[] dList;
 	public static computer setup;
 	
 	public static processManager pm;
 	public static memoryManager mm;
 
-	public static void main (String args[])
-	{		
-		jList = new job[5];
+	public static void main(String args[])
+	{
+		fileLoader load = new fileLoader();
+		try
+		{
+			String dir = new java.io.File(".").getCanonicalPath();;
+			jList = load.getJobs(dir+"/jobs");
+			dList = load.getDeviceList(dir+"/devices");
+		}
+		catch (IOException e) {
+			System.err.println("Caught IOException: " +  e.getMessage());
+		}
 	}
 	
 	/*

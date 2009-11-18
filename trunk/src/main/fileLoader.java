@@ -3,9 +3,9 @@ package main;
 public class fileLoader {
 	
 	/*
-	 * this returns an array of jobs from the given filenames
+	 * this returns an array of jobs from every file in the given directory
 	 */
-	public job[] getJobs(String[] filenames)
+	public job[] getJobs(String directory)
 	{
 		return null;
 	}
@@ -19,9 +19,9 @@ public class fileLoader {
 	}
 	
 	/*
-	 * this returns an array of devices from the given filenames
+	 * this returns an array of devices from every file in the given directory
 	 */
-	public device[] getDeviceList(String[] filenames)
+	public device[] getDeviceList(String directory)
 	{
 		return null;
 	}
