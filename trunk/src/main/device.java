@@ -6,11 +6,11 @@ package main;
  */
 
 
-public class Device {
+public class device {
 	String name;
 	int responseTime;	//in cpu cycles
 	
-	public Device()
+	public device()
 	{	
 	}
 }

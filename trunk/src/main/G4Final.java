@@ -9,16 +9,16 @@ package main;
 
 
 public class G4Final {
-	public static Job[] jList;
-	public static Computer setup;
+	public static job[] jList;
+	public static computer setup;
 	
-	public static ProcessManager pm;
-	public static MemoryManager mm;
+	public static processManager pm;
+	public static memoryManager mm;
 
 	public static void main (String args[])
 	{		
-		jList = new Job[5];
-		
+		jList = new job[5];
+		System.out.println("testing");
 	}
 	
 	/*

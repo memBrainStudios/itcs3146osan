@@ -6,19 +6,19 @@ package main;
  *      This file will create the virtual computer that the programs will be run on
  */
 
-public class Computer {
-	Command[] memory;
-	Command[] cache;
-	Device[] devices;
+public class computer {
+	command[] memory;
+	command[] cache;
+	device[] devices;
 	int memAccessTime;
 	int storageAccessTime;
 
-	public Computer(int memSize, int cacheSize)
+	public computer(int memSize, int cacheSize)
 	{		
 		init(memSize, cacheSize, 5, 30);
 	}
 	
-	public Computer(int memSize, int cacheSize, int inMemoryAccessTime, int inStorageAccessTime)
+	public computer(int memSize, int cacheSize, int inMemoryAccessTime, int inStorageAccessTime)
 	{		
 		init(memSize, cacheSize, inMemoryAccessTime, inStorageAccessTime);
 	}
@@ -28,8 +28,8 @@ public class Computer {
 	 */
 	private void init(int memSize, int cacheSize,  int inMemAccess, int inStoAccess)
 	{
-		this.memory = new Command[memSize];
-		this.cache = new Command[cacheSize];
+		this.memory = new command[memSize];
+		this.cache = new command[cacheSize];
 		memAccessTime = inMemAccess;
 		storageAccessTime = inStoAccess;
 	}
