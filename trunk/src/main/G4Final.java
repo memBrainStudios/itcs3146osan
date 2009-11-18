@@ -25,6 +25,7 @@ public class G4Final {
 			String dir = new java.io.File(".").getCanonicalPath();;
 			jList = load.getJobs(dir+"/jobs");
 			dList = load.getDeviceList(dir+"/devices");
+			setup = load.loadComputer(dir+"/computers/setup1.txt");
 		}
 		catch (IOException e) {
 			System.err.println("Caught IOException: " +  e.getMessage());

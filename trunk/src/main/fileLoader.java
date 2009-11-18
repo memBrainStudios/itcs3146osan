@@ -33,4 +33,12 @@ public class fileLoader {
 	{
 		return null;
 	}
+	
+	/*
+	 * this returns a computer object created from the specified filename
+	 */
+	public computer loadComputer(String filename)
+	{
+		return null;
+	}
 }
