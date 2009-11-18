@@ -10,13 +10,19 @@ public class processManager {
 
 	public processManager()
 	{
+		
+		
 	}
-	
+	public void newJob(job activeJob)
+	{
+		
+	}
 	/*
 	 * returns true if the CPU is to continue processing the current job
 	 */
 	public boolean continueCurrentJob(int cpuCycle)
 	{
+	
 		//determine whether or not to continue processing the current job
 		return false;
 	}
