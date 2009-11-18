@@ -18,7 +18,6 @@ public class G4Final {
 	public static void main (String args[])
 	{		
 		jList = new job[5];
-		System.out.println("testing");
 	}
 	
 	/*
