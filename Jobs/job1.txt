@@ -1,0 +1,30 @@
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+procces command
+loop for: 11: 5
+procces command
+procces command
+procces command
+procces command
+device call: printer
+procces command
+procces command
+procces command
+procces command
