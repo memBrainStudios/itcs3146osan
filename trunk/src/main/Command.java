@@ -1,39 +1,121 @@
 package main;
-/*
- *      command.java
- *      
- *      This will be a command that can be called from a line of a program
+
+/**
+ * 
+ * @author Mark A McKinney
+ * @author Dustin Culler
+ * @version 1.0 Alpha 20091120
  */
-
-
 public class Command {
-	private String name;	//will be one of the following: "procces command", "device call", "loop for"
-	public int iArg[] = new int[2];
-	public String sArg;
-
-	public Command(String inCommand)
-	{		
-		name = inCommand;
+	// Fields
+	private String command;
+	private String argString;
+	private int[] argInt;
+	
+	// Properties
+	/**
+	 * Sets the property of command.
+	 * @param command Command to be acted upon.
+	 */
+	public void setCommand(String command) {
+		this.command = command;
 	}
 
-	public Command(String inCommand, int inIntArg0, int inIntArg1)
-	{		
-		name = inCommand;
-		iArg[0] = inIntArg0;	//this is the line number to jump to for the for loop
-		iArg[1] = inIntArg1;	//this is the number of times to loop
+	/**
+	 * Returns the property value stored in command.
+	 * @return the command to be evaluated.
+	 */
+	public String getCommand() {
+		return command;
 	}
 
-	public Command(String inCommand, String inStringArg)
-	{		
-		name = inCommand;
-		sArg = inStringArg;
+	/**
+	 * Sets the property of argString
+	 * @param argString the argument evaluated by command.
+	 */
+	public void setArgString(String argString) {
+		this.argString = argString;
+	}
+
+	/**
+	 * Returns the property value stored in argString.
+	 * @return the argument to be evaluated by command.
+	 */
+	public String getArgString() {
+		return argString;
+	}
+
+	/**
+	 * 
+	 * @param position
+	 * @param value
+	 */
+	public void setArgInt(int position, int value) {
+		this.argInt[position] = value;
+	}
+
+	/**
+	 * 
+	 * @param position
+	 * @return
+	 */
+	public int getArgInt(int position) {
+		return argInt[position];
+	}
+
+	// Constructors
+	/**
+	 * 
+	 * @param command
+	 */
+	private Command(String command) {
+		Initialize(command, null, null, null);
 	}
 	
-	/*
-	 * returns the name
+	/**
+	 * 
+	 * @param command
+	 * @param argString
 	 */
-	public String getName()
-	{
-		return name;
+	private Command(String command, String argString) {
+		Initialize(command, argString, null, null);
+	}
+	
+	/**
+	 * 
+	 * @param command
+	 * @param arg0
+	 * @param arg1
+	 */
+	private Command(String command, Integer arg0, Integer arg1) {
+		Initialize(command, null, arg0, arg1);
+	}
+
+	// Methods
+	/**
+	 * 
+	 * @param command
+	 * @param argString
+	 * @param arg0
+	 * @param arg1
+	 */
+	public void Initialize(String command, String argString, Integer arg0, Integer arg1) {
+		this.setCommand(command);
+		this.setArgString(argString);
+		if (arg0 == null && arg1 == null) {
+			this.argInt = null;
+		} else {
+			this.argInt = new int[2];
+			if (arg0 == null) {
+				this.setArgInt(0, 0);
+			} else {
+				this.setArgInt(0, arg0);
+			}
+			if (arg1 == null) {
+				this.setArgInt(1, 0);
+			} else {
+				this.setArgInt(1, arg1);
+			}
+		}
 	}
 }

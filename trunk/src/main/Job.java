@@ -1,94 +1,92 @@
 package main;
 
-/*
- *      job.java
- *      
- *      
+import java.util.*;
+
+/**
+ * 
+ * @author Mark A McKinney
+ * @author Dustin Culler
+ * @version 1.0 Alpha 20091120
  */
-
-
 public class Job {
-	private Command[] lines;
-	public int currentLine;
+	// Fields
+	private String name;
+	private ArrayList<Command> lines;
 
-	public Job(int numLines)
-	{		
-		lines = new Command[numLines];
-		currentLine = 0;
+	// Properties
+	/**
+	 * 
+	 * @param name
+	 */
+	private void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * 
+	 * @param lines
+	 */
+	private void setLines(ArrayList<Command> lines) {
+		this.lines = lines;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public ArrayList<Command> getLines() {
+		return lines;
+	}
+
+	// Constructors
+	/**
+	 * 
+	 * @param name
+	 */
+	public Job(String name) {
+		Initialize(name, null);
 	}
 	
-	/*
-	 * returns the command at a specific line of code
+	/**
+	 * 
+	 * @param name
+	 * @param lines
 	 */
-	public Command getLine(int lineNum)
-	{
-		if(lineNum<lines.length)
-		{
-			return lines[lineNum];
-		}
-		else
-		{
-			System.err.println("Out of Bounds Exception in job.java: getLine(int lineNum)\n\t(lineNum = "+lineNum+") >= (lines.length = "+lines.length+")");
-			return null;
-		}
+	public Job(String name, ArrayList<Command> lines) {
+		Initialize(name, lines);
 	}
-	
-	/*
-	 * used to load in the next line of code
+
+	// Methods
+	/**
+	 * 
+	 * @param name
+	 * @param lines
 	 */
-	public void loadLine(int lineNum, Command inCommand)
-	{
-		if(lineNum<lines.length)
-		{
-			lines[lineNum] = inCommand;
-		}
-		else
-		{
-			System.err.println("Out of Bounds Exception in job.java: loadLine(int lineNum, command inCommand)\n\t(lineNum = "+lineNum+") >= (lines.length = "+lines.length+")");
-		}
+	private void Initialize(String name, ArrayList<Command> lines) {
+		this.setName(name);
+		this.setLines(lines);
 	}
-	
-	/*
-	 * returns whether or not the job is complete
+
+	/**
+	 * 
+	 * @param command
 	 */
-	public boolean isComplete()
-	{
-		if(currentLine >= lines.length)
-			return true;
-		return false;
+	public void addCommand(Command command) {
+		lines.add(command);
 	}
-	
-	/*
-	 * returns the current lines command
+
+	/**
+	 * 
+	 * @param index
+	 * @return
 	 */
-	public Command getCurrentLine()
-	{
-		return lines[currentLine];
-	}
-	
-	/*
-	 * will proccess the next line in the job
-	 */
-	public void proccessLine()
-	{
-		if(lines[currentLine].getName().equals("proccess command"))
-		{
-			currentLine++;
-		}
-		else if(lines[currentLine].getName().equals("loop for"))
-		{
-			if (lines[currentLine].iArg[1]-- < 0)
-			{
-				currentLine = lines[currentLine].iArg[0];
-			}
-			else
-			{
-				currentLine++;
-			}
-		}
-		else if(lines[currentLine].getName().equals("device call"))
-		{
-			//finish this logic
-		}
+	public Command removeCommand(int index) {
+		return lines.remove(index);
 	}
 }

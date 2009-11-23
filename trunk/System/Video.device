@@ -1,0 +1,14 @@
+[device]
+name	=	Video
+delay	=	40
+	[device]
+	name	=	GraphicsProcessor
+	delay	=	1
+	size	=	100
+	[/device]
+	[device]
+	name	=	Memory
+	delay	=	40
+	size	=	400
+	[/device]
+[/device]

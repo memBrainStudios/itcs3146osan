@@ -1,5 +1,0 @@
-memory size: 20000
-cache size: 200
-device: 1,3
-memory access time: 5
-storage access time: 50

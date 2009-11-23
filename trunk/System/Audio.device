@@ -1,0 +1,14 @@
+[device]
+name	=	Audio
+delay	=	40
+	[device]
+	name	=	AudioProcessor
+	delay	=	2
+	size	=	20
+	[/device]
+	[device]
+	name	=	Memory
+	delay	=	40
+	size	=	100
+	[/device]
+[/device]
