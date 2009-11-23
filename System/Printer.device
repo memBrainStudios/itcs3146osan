@@ -1,0 +1,5 @@
+[device]
+name	=	Printer
+delay	=	200
+size	=	40
+[/device]

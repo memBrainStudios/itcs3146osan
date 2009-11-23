@@ -1,0 +1,15 @@
+[device]
+name	=	processor
+delay	=	1
+size	=	20
+	[device]
+	name	=	L1Cache
+	delay	=	4
+	size	=	40
+	[/device]
+	[device]
+	name	=	L2Cache
+	delay	=	8
+	size	=	80
+	[/device]
+[/device]

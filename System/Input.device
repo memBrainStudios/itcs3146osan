@@ -1,0 +1,8 @@
+[device]
+name	=	Keyboard
+delay	=	1000
+[/device]
+[device]
+name	=	Mouse
+delay	=	1000
+[/device]
