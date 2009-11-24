@@ -6,14 +6,14 @@ package main;
  */
 
 
-public class processManager {
+public class ProcessManager {
 	LinkedList() list = new LinkedList();
 	int pointer = 0;
 	int lastPoint = 0;
 	int timeQuantum = 10;
 	int endCycle;
 	
-	public processManager()
+	public ProcessManager()
 	{
 		
 		
