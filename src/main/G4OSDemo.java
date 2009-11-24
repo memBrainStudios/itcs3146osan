@@ -20,6 +20,9 @@ public class G4OSDemo {
 	private static MemoryManager memoryManager;
 	private static DeviceManager deviceManager;
 
+	private static int cpuCycle;
+	private static int currentJob;
+
 	// Properties
 	/**
 	 * 
@@ -132,6 +135,8 @@ public class G4OSDemo {
 	 */
 	public static void LoadOS() {
 		// TODO OS Manager Setup here.
+		cpuCycle=0;
+		currentJob=-1;
 	}
 	
 	/**
@@ -139,6 +144,45 @@ public class G4OSDemo {
 	 */
 	public static void Update() {
 		// TODO Continuously run update until exit condition
-		// System is run from here
+		// System is run from here		//will run the current setup and provide an analysis
+		do
+		{
+			//determine whether or not to continue processing the current job;
+			if(processManager.continueCurrentJob(cpuCycle))
+			{
+				//we will continue to process a line of the current job
+				jobs.get(currentJob).proccessLine();
+			}
+			else
+			{
+				currentJob=processManager.loadJob();
+			}
+			
+			//check with the memory manager to see if the next line of processable code from the current job is in the cache
+			if(memoryManager.lineInCache(currentJob, jobs.get(currentJob).currentLine))
+			{
+				//if so process the current line
+			}
+			//else start the process of getting it there
+			else if(memoryManager.lineInMemory(currentJob, jobs.get(currentJob).currentLine))
+			{
+				memoryManager.loadToCache(currentJob, jobs.get(currentJob).currentLine);
+			}
+			else
+			{
+				memoryManager.loadToMemory(currentJob, jobs.get(currentJob).currentLine);
+			}
+			
+			//update cpuCycle
+			cpuCycle++;
+		}while(!jobsComplete());
+	}	
+	/*
+	 * checks to see if all jobs in the list are complete
+	 */
+	public static boolean jobsComplete()
+	{
+		//determine if all completeable jobs are complete, if so return true
+		return false;
 	}
 }

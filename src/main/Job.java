@@ -12,6 +12,8 @@ public class Job {
 	// Fields
 	private String name;
 	private ArrayList<Command> lines;
+	public int currentLine;
+
 
 	// Properties
 	/**
@@ -88,5 +90,30 @@ public class Job {
 	 */
 	public Command removeCommand(int index) {
 		return lines.remove(index);
+	}	/*
+	 * will proccess the next line in the job
+	 */
+	public void proccessLine()
+	{
+		if(lines.get(currentLine).getCommand().equals("proccess command"))
+		{
+			currentLine++;
+		}
+		else if(lines.get(currentLine).getCommand().equals("loop for"))
+		{
+			lines.get(currentLine).setArgInt(1, lines.get(currentLine).getArgInt(1)-1);
+			if (lines.get(currentLine).getArgInt(1) < 0)
+			{
+				currentLine = lines.get(currentLine).getArgInt(0);
+			}
+			else
+			{
+				currentLine++;
+			}
+		}
+		else if(lines.get(currentLine).getCommand().equals("device call"))
+		{
+			//finish this logic
+		}
 	}
 }
