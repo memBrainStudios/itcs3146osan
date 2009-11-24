@@ -7,8 +7,8 @@ package main;
  */
 
 public class Computer {
-	Command[] memory;
-	Command[] cache;
+	public Command[] memory;
+	public Command[] cache;
 	Device[] devices;
 	int memAccessTime;
 	int storageAccessTime;

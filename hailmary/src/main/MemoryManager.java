@@ -9,7 +9,7 @@ package main;
 
 public class MemoryManager {
 
-	public MemoryManager()
+	public MemoryManager(Computer inComp)
 	{	
 	}
 	
