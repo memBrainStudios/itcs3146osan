@@ -30,6 +30,8 @@ public class G4Final {
 		catch (IOException e) {
 			System.err.println("Caught IOException: " +  e.getMessage());
 		}
+		mm = new MemoryManager(setup);
+		pm = new ProcessManager();
 	}
 	
 	/*
