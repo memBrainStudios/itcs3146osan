@@ -1,0 +1,5 @@
+[device]
+name	=	Memory
+delay	=	40
+size	=	400
+[/device]
