@@ -1,16 +1,23 @@
 package main;
+import java.lang.ref.*;
 
-/*
- *      memoryManager.java
- *      
- *      
+/*		I assume the first jobNumber and lineNumber are 0.
+ * 
+ *      @author Mike Iannacone
+ *      @version like 10 or something      
  */
-
 
 public class MemoryManager {
 
+	private SoftReference<Computer> comp;
+	//if the reference doesn't work you'll have to use a copy of the computer:
+	//private Computer comp;
+	
 	public MemoryManager(Computer inComp)
 	{	
+		comp = new SoftReference<Computer>(inComp);
+		//if garbage collector eats the soft reference you have to switch to:
+		//comp = inComp
 	}
 	
 	/*
@@ -18,7 +25,11 @@ public class MemoryManager {
 	 */
 	public boolean lineInCache(int jobNumber, int lineNumber)
 	{
-		//returns true if the current line is in cache, else return false
+		for(Command c : comp.get().cache)
+		{
+			if(c.equals(G4Final.jList[jobNumber].getLine(lineNumber)))
+				return true;
+		}		
 		return false;
 	}
 	
@@ -27,32 +38,49 @@ public class MemoryManager {
 	 */
 	public boolean lineInMemory(int jobNumber, int lineNumber)
 	{
-		//returns true if the current line is in Memory, else return false
+		for(Command c : comp.get().memory)
+		{
+			if(c.equals(G4Final.jList[jobNumber].getLine(lineNumber)))
+				return true;
+		}
 		return false;
 	}
 	
 	/*
 	 * loads a line from secondary storage into main memory
+	 * Assumes no job is longer than 50 lines
 	 */
 	public void loadToMemory(int jobNumber, int lineNumber)
 	{
+		comp.get().memory[(jobNumber*50 + lineNumber)] = G4Final.jList[jobNumber].getLine(lineNumber);
 		//loads the current Line into memory from secondary storage
+		
 	}
 	
 	/*
 	 * loads a line from main memory into cache if possible
+	 * assumes cache hasn't had all its values initialized.
 	 */
 	public void loadToCache(int jobNumber, int lineNumber)
 	{
-		//loads the current Line into memory from secondary storage
+		for(int x = 0 ; x < comp.get().cache.length; x++)
+		{
+			if(comp.get().cache[x] == null)
+			{
+				comp.get().cache[x] = comp.get().memory[(jobNumber*50 + lineNumber)];
+				break;
+			}
+		}
 	}
 
 	/*
 	 * gets the specified line from cache
+	 * 
+	 * @param jobNumber
+	 * @param lineNumber
 	 */
 	public Command getLine(int jobNumber, int lineNumber)
 	{
-		//returns the cache memory address of the specified line, and handles memory swaping*/
-		return new Command("");
+		return new Command(comp.get().cache[lineNumber].getName());
 	}
 }
