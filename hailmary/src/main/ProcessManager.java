@@ -7,13 +7,13 @@ package main
  */
 
 
-public class processManager {
+public class ProcessManager {
     List<String> list = new List<String>();
     int timeQuantum = 10;
     int endCycle;
     private int size;
     
-    public processManager()
+    public ProcessManager()
     {
         size = 0;
     }

@@ -1,2 +1,2 @@
-webcam
+webcam 
 50

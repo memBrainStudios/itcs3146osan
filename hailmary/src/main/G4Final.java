@@ -19,13 +19,13 @@ public class G4Final {
 
 	public static void main(String args[])
 	{
-		FileLoader load = new FileLoader();
+		SystemLoader load = new SystemLoader();
 		try
 		{
 			String dir = new java.io.File(".").getCanonicalPath();;
-			jList = load.getJobs(dir+"/jobs");
-			dList = load.getDeviceList(dir+"/devices");
-			setup = load.loadComputer(dir+"/computers/setup1.txt");
+			jList = load.getJobs(dir+"\\jobs");
+			dList = load.getDevices(dir+"\\devices");
+			setup = load.loadComputer(dir+"\\computers\\setup1.txt", dList);
 		}
 		catch (IOException e) {
 			System.err.println("Caught IOException: " +  e.getMessage());
@@ -52,7 +52,7 @@ public class G4Final {
 			}
 			else
 			{
-				currentJob=pm.loadJob();
+//				currentJob=pm.loadJob();
 			}
 			
 			//check with the memory manager to see if the next line of processable code from the current job is in the cache
