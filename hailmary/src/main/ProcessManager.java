@@ -1,4 +1,6 @@
-package main
+package main;
+
+import java.awt.List;
  
 /*
  *      processManager.java
@@ -8,7 +10,7 @@ package main
 
 
 public class ProcessManager {
-    List<String> list = new List<String>();
+     List<String> list = new List<String>();
     int timeQuantum = 10;
     int endCycle;
     private int size;
