@@ -1,11 +1,10 @@
 package main;
+
 /*
  *      command.java
  *      
  *      This will be a command that can be called from a line of a program
  */
-
-
 public class Command {
 	private String name;	//will be one of the following: "procces command", "device call", "loop for"
 	public int iArg[] = new int[2];

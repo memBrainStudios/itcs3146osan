@@ -33,4 +33,12 @@ public class Computer {
 		memAccessTime = inMemAccess;
 		storageAccessTime = inStoAccess;
 	}
+	
+	public void initDevices(int size) {
+		devices = new Device[size];
+	}
+	
+	public void addDevice(int index, Device device) {
+		devices[index] = device;
+	}
 }
