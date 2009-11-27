@@ -1,27 +1,21 @@
 package main;
+
 import java.lang.ref.*;
 
-/*		I assume the first jobNumber and lineNumber are 0.
- * 
- *      @author Mike Iannacone
- *      @version like 10 or something      
- */
-
 public class MemoryManager {
-
 	private SoftReference<Computer> comp;
 	//if the reference doesn't work you'll have to use a copy of the computer:
 	//private Computer comp;
 	
 	public MemoryManager(Computer inComp)
-	{	
+	{
 		comp = new SoftReference<Computer>(inComp);
 		//if garbage collector eats the soft reference you have to switch to:
-		//comp = inComp
+		//comp = inComp;
 	}
 	
 	/*
-	 * returns true if the specified line is in cache
+	 * returns true is the specified line is in cache
 	 */
 	public boolean lineInCache(int jobNumber, int lineNumber)
 	{
@@ -29,7 +23,7 @@ public class MemoryManager {
 		{
 			if(c.equals(G4Final.jList[jobNumber].getLine(lineNumber)))
 				return true;
-		}		
+		}
 		return false;
 	}
 	
