@@ -41,4 +41,25 @@ public class Computer {
 	public void addDevice(int index, Device device) {
 		devices[index] = device;
 	}
+	
+	public String basicInfoString()
+	{
+		String ret = "";
+		ret += "\nMemory:\t" + (memory.length*32) + " bytes";
+		ret += "\nCache Memory:\t" + (cache.length*32) + " bytes";
+		
+		return ret;
+	}
+	
+	public String deviceInfoString()
+	{
+		String ret = "Device List:";
+		for(int i=0; i<devices.length; i++)
+		{
+			ret += "\n\t" + devices[i].getName();
+			ret += "\n\t\tResponse Time:\t" + devices[i].getResponseTime();
+		}
+		
+		return ret;
+	}
 }

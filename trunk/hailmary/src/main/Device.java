@@ -18,4 +18,14 @@ public class Device {
 		name = inName;
 		responseTime = inResponse;
 	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public int getResponseTime()
+	{
+		return responseTime;
+	}
 }
