@@ -11,7 +11,7 @@
        public MemoryManager(Computer inComp)
       {
          comp = new SoftReference<Computer>(inComp);
-         cacheIndex = new String[comp.get().cache.getLength()];
+         cacheIndex = new String[comp.get().cache.length];
       //if garbage collector eats the soft reference you have to switch to:
       //comp = inComp;
       }
@@ -66,7 +66,7 @@
             if(comp.get().cache[x] == null)
             {
                comp.get().cache[x] = comp.get().memory[(jobNumber*50 + lineNumber)];
-               cacheIndex[x] = "" + JobNumber + " " + lineNumber;
+               cacheIndex[x] = "" + jobNumber + " " + lineNumber;
                break;
             }
          }
@@ -81,7 +81,7 @@
        public Command getLine(int jobNumber, int lineNumber)
       {
          String temp = "" + jobNumber + " " + lineNumber;
-         for(int x = 0; x < cacheIndex.getLength(); x++)
+         for(int x = 0; x < cacheIndex.length; x++)
          {
             if(cacheIndex[x].equals(temp))
             {
