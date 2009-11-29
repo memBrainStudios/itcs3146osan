@@ -43,8 +43,11 @@
       {
          for(Command c : comp.get().memory)
          {
+        	if(c != null)
+        	{
             if(c.equals(G4Final.jList[jobNumber].getLine(lineNumber)))
                return true;
+        	}
          }
          return false;
       }
