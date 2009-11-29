@@ -1,7 +1,5 @@
-package main;
 
-import java.awt.List;
- 
+
 /*
  *      processManager.java
  *      
@@ -21,7 +19,7 @@ public class ProcessManager {
     }
     public void newJob(int activeJob) throws IndexOutOfBound {
             list.add(size,Integer.toString(activeJob));
-            size = size++;
+            size = size + 1;
     }
     public void jobFinished(int deleteJob) throws IndexOutOfBound{
         int jobCounter = 0;
@@ -52,11 +50,19 @@ public class ProcessManager {
      */
     public int loadJob(int cpuCycle) throws IndexOutOfBound
     {
-        if( list == null)
+        if( size == 0)
+        {
             return -1;
+        }
         else{
-            endCycle = cpuCycle + timeQuantum;
-            return Integer.valueOf(list.get(list.movePointer()));
+            if (size == 1){
+                endCycle = cpuCycle + timeQuantum;
+                return Integer.valueOf(list.get(list.getPointer()));
+            }
+            else{
+                endCycle = cpuCycle + timeQuantum;
+                return Integer.valueOf(list.get(list.movePointer()));
+            }
         
         }
         //returns the next job that will be processed by the cpu
