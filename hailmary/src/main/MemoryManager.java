@@ -11,9 +11,14 @@
        public MemoryManager(Computer inComp)
       {
          comp = new SoftReference<Computer>(inComp);
+       //if garbage collector eats the soft reference you have to switch to:
+         //comp = inComp;
          cacheIndex = new String[comp.get().cache.length];
-      //if garbage collector eats the soft reference you have to switch to:
-      //comp = inComp;
+         for(int i = 0; i < cacheIndex.length; i++)
+         {
+        	 cacheIndex[i] = "";//initialize the array.
+         }
+      
       }
    
    /*
