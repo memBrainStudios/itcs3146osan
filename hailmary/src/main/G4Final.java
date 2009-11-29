@@ -115,6 +115,7 @@ public class G4Final {
 			if(jList[currentJob].isComplete())
 			{
 				addDetailedAnalysis("Job number " + currentJob + " is Complete");
+				addAnalysis("Job number " + currentJob + " finished in " + cpuCycle + " CPU cycles.");
 				pm.jobFinished(currentJob);
 				addDetailedAnalysis("\tLoading Job: " + pm.loadJob(cpuCycle));
 				currentJob=pm.loadJob(cpuCycle);
