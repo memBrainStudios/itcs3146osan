@@ -3,22 +3,17 @@
    import java.lang.ref.*;
 
     public class MemoryManager {
-      private SoftReference<Computer> comp;
+      private Computer comp;
       private String[] cacheIndex;
-   //if the reference doesn't work you'll have to use a copy of the computer:
-   //private Computer comp;
    
        public MemoryManager(Computer inComp)
       {
-         comp = new SoftReference<Computer>(inComp);
-       //if garbage collector eats the soft reference you have to switch to:
-         //comp = inComp;
-         cacheIndex = new String[comp.get().cache.length];
+         comp = inComp;
+         cacheIndex = new String[comp.cache.length];
          for(int i = 0; i < cacheIndex.length; i++)
          {
         	 cacheIndex[i] = "";//initialize the array.
-         }
-      
+         }      
       }
    
    /*
@@ -41,7 +36,7 @@
     */
        public boolean lineInMemory(int jobNumber, int lineNumber)
       {
-         for(Command c : comp.get().memory)
+         for(Command c : comp.memory)
          {
         	if(c != null)
         	{
@@ -58,22 +53,22 @@
     */
        public void loadToMemory(int jobNumber, int lineNumber)
       {
-         comp.get().memory[(jobNumber*50 + lineNumber)] = G4Final.jList[jobNumber].getLine(lineNumber);
+         comp.memory[(jobNumber*50 + lineNumber)] = G4Final.jList[jobNumber].getLine(lineNumber);
       //loads the current Line into memory from secondary storage
       
       }
    
    /*
     * loads a line from main memory into cache if possible
-    * assumes cache hasn't had all its values initialized.
+    * 
     */
        public void loadToCache(int jobNumber, int lineNumber)
       {
-         for(int x = 0 ; x < comp.get().cache.length; x++)
+         for(int x = 0 ; x < comp.cache.length; x++)
          {
-            if(comp.get().cache[x] == null)
+            if(comp.cache[x] == null)
             {
-               comp.get().cache[x] = comp.get().memory[(jobNumber*50 + lineNumber)];
+               comp.cache[x] = comp.memory[(jobNumber*50 + lineNumber)];
                cacheIndex[x] = "" + jobNumber + " " + lineNumber;
                break;
             }
@@ -93,7 +88,7 @@
          {
             if(cacheIndex[x].equals(temp))
             {
-            return comp.get().cache[x];
+            return comp.cache[x];
             }
          }
          return null; //if the line isn't in cache.
