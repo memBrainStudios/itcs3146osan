@@ -18,6 +18,7 @@ public class G4Final {
 	
 	public static ProcessManager pm;
 	public static MemoryManager mm;
+	public static DeviceManager dm;
 
 	public static void main(String args[]) throws IndexOutOfBound
 	{
@@ -35,6 +36,11 @@ public class G4Final {
 		}
 		catch (IOException e) {
 			System.err.println("Caught IOException: " +  e.getMessage());
+		}
+		//init job numbers
+		for(int i=0;i<jList.length;i++)
+		{
+			jList[i].jNum=i;
 		}
 		//testing
 //		jList = new Job[2];
@@ -58,6 +64,7 @@ public class G4Final {
 		//testing
 		mm = new MemoryManager(setup);
 		pm = new ProcessManager();
+		dm = new DeviceManager();
 		for (int i=0; i<jList.length; i++)
 		{
 			pm.newJob(i);
@@ -198,5 +205,10 @@ public class G4Final {
 			System.out.println(newLine);
 			analysis += "\n" + newLine;
 		}
+	}
+	
+	public static void callDevice(int jobNum, String deviceName)
+	{
+		dm.callToDevice(jobNum, setup.getDevNum(deviceName));
 	}
 }

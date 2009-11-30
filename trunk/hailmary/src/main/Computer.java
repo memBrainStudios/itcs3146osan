@@ -62,4 +62,16 @@ public class Computer {
 		
 		return ret;
 	}
+	
+	public int getDevNum(String deviceName)
+	{
+		for(int i=0;i<devices.length;i++)
+		{
+			if(devices[i].equals(deviceName))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
 }
