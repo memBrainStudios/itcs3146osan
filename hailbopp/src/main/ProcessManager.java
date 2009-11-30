@@ -27,7 +27,7 @@ public class ProcessManager {
             if (Integer.parseInt(holder) == deleteJob){
             	if(Integer.parseInt(holder)  == list.getPointer())
             		{
-            			list.pointer=list.pointer.getNext();
+            			list.movePointer();
             		}
                 list.remove(jobCounter);
                 size--;
