@@ -80,6 +80,13 @@ public class G4Final {
 			if(!pm.continueCurrentJob(cpuCycle))
 			{
 				currentJob=pm.loadJob(cpuCycle);
+				for(int i=0;i<jList.length;i++)
+				{
+					if(jList[currentJob].isComplete())
+					{
+						currentJob=pm.loadJob(cpuCycle);
+					}
+				}
 				addDetailedAnalysis("\tLoading Job: " + currentJob);
 			}
 			
@@ -138,7 +145,7 @@ public class G4Final {
 				addDetailedAnalysis("Job number " + currentJob + " is Complete");
 				addAnalysis("Job number " + currentJob + " finished in " + cpuCycle + " CPU cycles.");
 				addFinalAnalysis("Job number " + currentJob + " finished in " + cpuCycle + " CPU cycles.");
-				pm.jobFinished(currentJob);
+				//pm.jobFinished(currentJob);
 				if(!jobsComplete())
 				{
 //					currentJob=pm.loadJob(cpuCycle);
