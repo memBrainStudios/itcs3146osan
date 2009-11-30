@@ -70,7 +70,10 @@
     	   int ln = lineNumber - (lineNumber%50);
     	   for(int i= 0; i < 50; i++)
     	   {
-    		   comp.memory[lru(memLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(ln+i);
+    		   if(G4Final.jList[jobNumber].numLines()>ln+i)
+    		   {
+    			   comp.memory[lru(memLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(ln+i);
+    		   }
     	   }
     	   for(int i=0; i < memLastLoaded.length; i++)
     	   {
@@ -88,8 +91,11 @@
     	   int ln = lineNumber - (lineNumber%50);
     	   for(int i= 0; i < 50; i++)
     	   {
-        	   comp.cache[lru(cacheLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(ln+i);
-        	   cacheIndex[lru(cacheLastLoaded)*50+i]= "" + jobNumber + " " + ln+i;
+    		   if(G4Final.jList[jobNumber].numLines()>ln+i)
+    		   {
+    			   comp.cache[lru(cacheLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(ln+i);
+    			   cacheIndex[lru(cacheLastLoaded)*50+i]= "" + jobNumber + " " + ln+i;
+    		   }
     	   }
     	   for(int i=0; i < cacheLastLoaded.length; i++)
     	   {
