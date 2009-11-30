@@ -52,7 +52,6 @@ process-command
 process-command
 process-command
 process-command
-loop-for 52 100
 process-command
 process-command
 process-command
@@ -271,7 +270,7 @@ process-command
 process-command
 process-command
 process-command
-process-command
+loop-for 210 30
 process-command
 process-command
 process-command
