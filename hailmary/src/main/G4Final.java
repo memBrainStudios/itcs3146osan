@@ -25,6 +25,10 @@ public class G4Final {
 		try
 		{
 			String dir = new java.io.File(".").getCanonicalPath();
+			if(dir.contains("_svn"))
+			{
+				dir = new java.io.File("..").getCanonicalPath();
+			}
 			jList = load.getJobs(dir+"\\jobs");
 			dList = load.getDevices(dir+"\\devices");
 			setup = load.loadComputer(dir+"\\computers\\setup1.txt", dList);
@@ -52,6 +56,8 @@ public class G4Final {
 //		setup.addDevice(0, dList[0]);
 //		setup.addDevice(1, dList[1]);
 		//testing
+		if(setup==null)
+			System.out.println("haha");
 		mm = new MemoryManager(setup);
 		pm = new ProcessManager();
 		for (int i=0; i<jList.length; i++)
