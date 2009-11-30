@@ -130,7 +130,7 @@ public class G4Final {
 							" from main memory into cache memory");
 				}
 			}
-			else if(cpuCycle%setup.storageAccessTime == 0)
+			else if(cpuCycle%setup.storageAccessTime == 1)
 			{
 				mm.loadToMemory(currentJob, jList[currentJob].currentLine);
 				addDetailedAnalysis("The memory manager loaded in line " +
@@ -155,9 +155,9 @@ public class G4Final {
 				addDetailedAnalysis("Job number " + currentJob + " is Complete");
 				addAnalysis("Job number " + currentJob + " finished in " + cpuCycle + " CPU cycles.");
 				addFinalAnalysis("Job number " + currentJob + " finished in " + cpuCycle + " CPU cycles.");
-				pm.jobFinished(currentJob);
 				if(!jobsComplete())
 				{
+					pm.jobFinished(currentJob);
 					currentJob=pm.loadJob(cpuCycle);
 					addDetailedAnalysis("\tLoading Job: " + currentJob);
 				}
