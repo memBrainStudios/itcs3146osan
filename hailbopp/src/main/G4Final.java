@@ -43,6 +43,26 @@ public class G4Final {
 		{
 			jList[i].jNum=i;
 		}
+		//testing
+//		jList = new Job[2];
+//		jList[0] = new Job(5);
+//		jList[0].addCommand(0, new Command("procces command"));
+//		jList[0].addCommand(1, new Command("procces command"));
+//		jList[0].addCommand(2, new Command("procces command"));
+//		jList[0].addCommand(3, new Command("procces command"));
+//		jList[0].addCommand(4, new Command("procces command"));
+//		jList[1] = new Job(3);
+//		jList[1].addCommand(0, new Command("procces command"));
+//		jList[1].addCommand(1, new Command("procces command"));
+//		jList[1].addCommand(2, new Command("procces command"));
+//		dList = new Device[2];
+//		dList[0] = new Device("printer", 100);
+//		dList[1] = new Device("sound card", 80);
+//		setup = new Computer(2000, 200);
+//		setup.initDevices(2);
+//		setup.addDevice(0, dList[0]);
+//		setup.addDevice(1, dList[1]);
+		//testing
 		mm = new MemoryManager(setup);
 		pm = new ProcessManager();
 		dm = new DeviceManager();
@@ -148,8 +168,15 @@ public class G4Final {
 				//pm.jobFinished(currentJob);
 				if(!jobsComplete())
 				{
-//					currentJob=pm.loadJob(cpuCycle);
-//					addDetailedAnalysis("\tLoading Job: " + currentJob);
+					currentJob=pm.loadJob(cpuCycle);
+					for(int i=0;i<jList.length;i++)
+					{
+						if(jList[currentJob].isComplete())
+						{
+							currentJob=pm.loadJob(cpuCycle);
+						}
+					}
+					addDetailedAnalysis("\tLoading Job: " + currentJob);
 				}
 			}
 			
