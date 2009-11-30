@@ -42,7 +42,7 @@
         
          for(String s: cacheIndex)
          {
-            if(s.equals(temp))
+            if(s!=null && s.equals(temp))
                return true;
          }
          return false;
