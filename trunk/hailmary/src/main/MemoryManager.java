@@ -1,19 +1,34 @@
    package main;
-
-   import java.lang.ref.*;
+   
+   /*
+    * @author Mike Iannacone
+    * @version 9001
+    */
 
     public class MemoryManager {
       private Computer comp;
       private String[] cacheIndex;
+      private int[] memLastAccess;
+      private int[] cacheLastAccess;
    
        public MemoryManager(Computer inComp)
       {
          comp = inComp;
          cacheIndex = new String[comp.cache.length];
+         memLastAccess = new int[comp.cache.length/50];
+         cacheLastAccess = new int[comp.cache.length/50];
          for(int i = 0; i < cacheIndex.length; i++)
          {
-        	 cacheIndex[i] = "";//initialize the array.
-         }      
+        	 cacheIndex[i] = "";//initialize the cacheIndex array.
+         } 
+         for(int i = 0; i < cacheLastAccess.length; i++)
+         {
+           	 cacheLastAccess[i] = 0;//initialize the cacheIndex array.
+         } 
+         for(int i = 0; i < memLastAccess.length; i++)
+         {
+        	 memLastAccess[i] = 0;//initialize the cacheIndex array.
+         } 
       }
    
    /*
@@ -53,7 +68,8 @@
     */
        public void loadToMemory(int jobNumber, int lineNumber)
       {
-         comp.memory[(jobNumber*50 + lineNumber)] = G4Final.jList[jobNumber].getLine(lineNumber);
+    	   
+         //comp.memory[(jobNumber*50 + lineNumber)] = G4Final.jList[jobNumber].getLine(lineNumber);
       //loads the current Line into memory from secondary storage
       
       }
@@ -64,6 +80,7 @@
     */
        public void loadToCache(int jobNumber, int lineNumber)
       {
+    	
          for(int x = 0 ; x < comp.cache.length; x++)
          {
             if(comp.cache[x] == null)
