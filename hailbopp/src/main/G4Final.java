@@ -91,7 +91,10 @@ public class G4Final {
 		int cacheMissCounter=0;
 		do
 		{
-			//for(long i=0;i<50000000;i++);
+			if(cpuCycle>10295)
+			{
+				for(long i=0;i<50000000;i++);
+			}
 			addDetailedAnalysis("Begining CPU cycle # " + cpuCycle);
 			//determine whether or not to continue processing the current job;
 			if(!pm.continueCurrentJob(cpuCycle))
@@ -155,9 +158,9 @@ public class G4Final {
 				addDetailedAnalysis("Job number " + currentJob + " is Complete");
 				addAnalysis("Job number " + currentJob + " finished in " + cpuCycle + " CPU cycles.");
 				addFinalAnalysis("Job number " + currentJob + " finished in " + cpuCycle + " CPU cycles.");
+				//pm.jobFinished(currentJob);
 				if(!jobsComplete())
 				{
-					pm.jobFinished(currentJob);
 					currentJob=pm.loadJob(cpuCycle);
 					addDetailedAnalysis("\tLoading Job: " + currentJob);
 				}
