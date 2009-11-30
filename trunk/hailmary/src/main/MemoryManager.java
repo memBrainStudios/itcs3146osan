@@ -8,26 +8,26 @@
     public class MemoryManager {
       private Computer comp;
       private String[] cacheIndex;
-      private int[] memLastAccess;
-      private int[] cacheLastAccess;
+      private int[] memLastLoaded;
+      private int[] cacheLastLoaded;
    
        public MemoryManager(Computer inComp)
       {
          comp = inComp;
          cacheIndex = new String[comp.cache.length];
-         memLastAccess = new int[comp.cache.length/50];
-         cacheLastAccess = new int[comp.cache.length/50];
+         memLastLoaded = new int[comp.cache.length/50];
+         cacheLastLoaded = new int[comp.cache.length/50];
          for(int i = 0; i < cacheIndex.length; i++)
          {
         	 cacheIndex[i] = "";//initialize the cacheIndex array.
          } 
-         for(int i = 0; i < cacheLastAccess.length; i++)
+         for(int i = 0; i < cacheLastLoaded.length; i++)
          {
-           	 cacheLastAccess[i] = 0;//initialize the cacheIndex array.
+           	 cacheLastLoaded[i] = 0;//initialize the cacheIndex array.
          } 
-         for(int i = 0; i < memLastAccess.length; i++)
+         for(int i = 0; i < memLastLoaded.length; i++)
          {
-        	 memLastAccess[i] = 0;//initialize the cacheIndex array.
+        	 memLastLoaded[i] = 0;//initialize the cacheIndex array.
          } 
       }
    
@@ -63,33 +63,27 @@
       }
    
    /*
-    * loads a line from secondary storage into main memory
-    * Assumes no job is longer than 50 lines
+    * loads a line and its job from secondary storage into main memory
     */
        public void loadToMemory(int jobNumber, int lineNumber)
       {
-    	   
-         //comp.memory[(jobNumber*50 + lineNumber)] = G4Final.jList[jobNumber].getLine(lineNumber);
-      //loads the current Line into memory from secondary storage
-      
+    	   for(int i= 0; i < 50; i++)
+    	   {
+    	   comp.memory[lru(memLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(lineNumber+i);
+    	   }	
+         
       }
    
    /*
-    * loads a line from main memory into cache if possible
+    * loads a line from "main memory" into cache if possible
     * 
     */
        public void loadToCache(int jobNumber, int lineNumber)
       {
-    	
-         for(int x = 0 ; x < comp.cache.length; x++)
-         {
-            if(comp.cache[x] == null)
-            {
-               comp.cache[x] = comp.memory[(jobNumber*50 + lineNumber)];
-               cacheIndex[x] = "" + jobNumber + " " + lineNumber;
-               break;
-            }
-         }
+    	   for(int i= 0; i < 50; i++)
+    	   {
+    	   comp.cache[lru(cacheLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(lineNumber+i);
+    	   }
       }
    
    /*
@@ -110,4 +104,17 @@
          }
          return null; //if the line isn't in cache.
       }
-   }
+       public int lru(int[] x)
+       {
+    	   int max = 0;
+    	   for(int i = 0; i < x.length; i++)
+    	   {
+    		   if(x[i] > x[max])
+    		   {
+    			  max = i;
+    		   }
+    	   }
+    	   return max;
+       }
+       }
+  
