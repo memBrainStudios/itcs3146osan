@@ -88,13 +88,13 @@ public class G4Final {
 		int currentJob=pm.loadJob(cpuCycle);
 		do
 		{
-			for(long i=0;i<50000000;i++);
+			//for(long i=0;i<50000000;i++);
 			addDetailedAnalysis("Begining CPU cycle # " + cpuCycle);
 			//determine whether or not to continue processing the current job;
 			if(!pm.continueCurrentJob(cpuCycle))
 			{
-				addDetailedAnalysis("\tLoading Job: " + pm.loadJob(cpuCycle));
 				currentJob=pm.loadJob(cpuCycle);
+				addDetailedAnalysis("\tLoading Job: " + currentJob);
 			}
 			
 			//check with the memory manager to see if the next line of processable code from the current job is in the cache
@@ -149,8 +149,11 @@ public class G4Final {
 				addDetailedAnalysis("Job number " + currentJob + " is Complete");
 				addAnalysis("Job number " + currentJob + " finished in " + cpuCycle + " CPU cycles.");
 				pm.jobFinished(currentJob);
-				addDetailedAnalysis("\tLoading Job: " + pm.loadJob(cpuCycle));
-				currentJob=pm.loadJob(cpuCycle);
+				if(!jobsComplete())
+				{
+					currentJob=pm.loadJob(cpuCycle);
+					addDetailedAnalysis("\tLoading Job: " + currentJob);
+				}
 			}
 			
 			//update cpuCycle
