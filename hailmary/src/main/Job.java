@@ -112,4 +112,9 @@ public class Job {
 			currentLine++;
 		}
 	}
+	
+	public int numLines()
+	{
+		return lines.length;
+	}
 }
