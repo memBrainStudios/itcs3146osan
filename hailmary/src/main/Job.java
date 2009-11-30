@@ -10,6 +10,7 @@ package main;
 public class Job {
 	private Command[] lines;
 	public int currentLine;
+	public int jNum;
 
 	public Job(int numLines)
 	{		
@@ -29,7 +30,6 @@ public class Job {
 	public void addCommand(int index, Command command) {
 		lines[index] = command;
 	}
-	
 	/*
 	 * returns the command at a specific line of code
 	 */
