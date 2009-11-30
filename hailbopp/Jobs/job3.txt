@@ -270,7 +270,7 @@ process-command
 process-command
 process-command
 process-command
-loop-for 210 100
+loop-for 210 10
 process-command
 process-command
 process-command
