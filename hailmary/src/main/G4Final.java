@@ -88,7 +88,7 @@ public class G4Final {
 		int currentJob=pm.loadJob(cpuCycle);
 		do
 		{
-			for(long i=0;i<200000000;i++);
+			for(long i=0;i<50000000;i++);
 			addDetailedAnalysis("Begining CPU cycle # " + cpuCycle);
 			//determine whether or not to continue processing the current job;
 			if(!pm.continueCurrentJob(cpuCycle))
