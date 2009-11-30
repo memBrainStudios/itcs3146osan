@@ -93,7 +93,7 @@ public class G4Final {
 		{
 			if(cpuCycle>10295)
 			{
-				for(long i=0;i<50000000;i++);
+				//for(long i=0;i<50000000;i++);
 			}
 			addDetailedAnalysis("Begining CPU cycle # " + cpuCycle);
 			//determine whether or not to continue processing the current job;
@@ -158,7 +158,7 @@ public class G4Final {
 				addDetailedAnalysis("Job number " + currentJob + " is Complete");
 				addAnalysis("Job number " + currentJob + " finished in " + cpuCycle + " CPU cycles.");
 				addFinalAnalysis("Job number " + currentJob + " finished in " + cpuCycle + " CPU cycles.");
-				//pm.jobFinished(currentJob);
+				pm.jobFinished(currentJob);
 				if(!jobsComplete())
 				{
 					currentJob=pm.loadJob(cpuCycle);
