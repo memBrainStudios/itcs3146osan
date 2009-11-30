@@ -1,0 +1,30 @@
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+process-command
+loop-for 11 5
+process-command
+process-command
+process-command
+process-command
+device-call printer
+process-command
+process-command
+process-command
+process-command
