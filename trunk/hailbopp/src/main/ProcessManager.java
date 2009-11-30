@@ -22,8 +22,7 @@ public class ProcessManager {
             size = size + 1;
     }
     public void jobFinished(int deleteJob) throws IndexOutOfBound{
-        int jobCounter = 0;
-        if (jobCounter < size){
+        for (int jobCounter=0; jobCounter < size; jobCounter++){
             String holder = list.get(jobCounter);
             if (Integer.parseInt(holder) == deleteJob){
                 list.remove(jobCounter);
