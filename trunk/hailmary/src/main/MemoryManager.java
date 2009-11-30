@@ -67,11 +67,16 @@
     */
        public void loadToMemory(int jobNumber, int lineNumber)
       {
+    	   int ln = lineNumber - (lineNumber%50);
     	   for(int i= 0; i < 50; i++)
     	   {
-    	   comp.memory[lru(memLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(lineNumber+i);
-    	   }	
-         
+    		   comp.memory[lru(memLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(ln+i);
+    	   }
+    	   for(int i=0; i < memLastLoaded.length; i++)
+    	   {
+    		   memLastLoaded[i]++;
+    	   }
+    	   memLastLoaded[lru(memLastLoaded)] = 0;
       }
    
    /*
@@ -80,10 +85,17 @@
     */
        public void loadToCache(int jobNumber, int lineNumber)
       {
+    	   int ln = lineNumber - (lineNumber%50);
     	   for(int i= 0; i < 50; i++)
     	   {
-    	   comp.cache[lru(cacheLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(lineNumber+i);
+        	   comp.cache[lru(cacheLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(ln+i);
+        	   cacheIndex[lru(cacheLastLoaded)*50+i]= "" + jobNumber + " " + ln+i;
     	   }
+    	   for(int i=0; i < cacheLastLoaded.length; i++)
+    	   {
+    		   cacheLastLoaded[i]++;
+    	   }
+    	   cacheLastLoaded[lru(cacheLastLoaded)] = 0;
       }
    
    /*
@@ -103,18 +115,16 @@
             }
          }
          return null; //if the line isn't in cache.
-      }
-       public int lru(int[] x)
-       {
-    	   int max = 0;
-    	   for(int i = 0; i < x.length; i++)
-    	   {
-    		   if(x[i] > x[max])
-    		   {
-    			  max = i;
-    		   }
-    	   }
-    	   return max;
-       }
-       }
+	}
+
+	public int lru(int[] x) {
+		int max = 0;
+		for (int i = 0; i < x.length; i++) {
+			if (x[i] > x[max]) {
+				max = i;
+			}
+		}
+		return max;
+	}
+}
   

@@ -14,7 +14,7 @@ public class G4Final {
 	public static Device[] dList;
 	public static Computer setup;
 	public static String analysis;
-	private static boolean detailedAnalysis = false;
+	private static boolean detailedAnalysis = true;
 	
 	public static ProcessManager pm;
 	public static MemoryManager mm;
@@ -56,8 +56,6 @@ public class G4Final {
 //		setup.addDevice(0, dList[0]);
 //		setup.addDevice(1, dList[1]);
 		//testing
-		if(setup==null)
-			System.out.println("haha");
 		mm = new MemoryManager(setup);
 		pm = new ProcessManager();
 		for (int i=0; i<jList.length; i++)
@@ -83,6 +81,7 @@ public class G4Final {
 		int currentJob=pm.loadJob(cpuCycle);
 		do
 		{
+			for(long i=0;i<200000000;i++);
 			addDetailedAnalysis("Begining CPU cycle # " + cpuCycle);
 			//determine whether or not to continue processing the current job;
 			if(!pm.continueCurrentJob(cpuCycle))
@@ -90,6 +89,7 @@ public class G4Final {
 				addDetailedAnalysis("\tLoading Job: " + pm.loadJob(cpuCycle));
 				currentJob=pm.loadJob(cpuCycle);
 			}
+			
 			//check with the memory manager to see if the next line of processable code from the current job is in the cache
 			if(mm.lineInCache(currentJob, jList[currentJob].currentLine))
 			{
@@ -157,7 +157,14 @@ public class G4Final {
 	public static boolean jobsComplete()
 	{
 		//determine if all completeable jobs are complete, if so return true
-		return false;
+		for(int i = 0; i<jList.length; i++)
+		{
+			if(!jList[i].isComplete())
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	/*
@@ -165,6 +172,7 @@ public class G4Final {
 	 */
 	private static void addAnalysis(String newLine)
 	{
+		System.out.println(newLine);
 		analysis += "\n" + newLine;
 	}
 	
@@ -175,6 +183,7 @@ public class G4Final {
 	{
 		if(detailedAnalysis)
 		{
+			System.out.println(newLine);
 			analysis += "\n" + newLine;
 		}
 	}
@@ -186,6 +195,7 @@ public class G4Final {
 	{
 		if(!detailedAnalysis)
 		{
+			System.out.println(newLine);
 			analysis += "\n" + newLine;
 		}
 	}

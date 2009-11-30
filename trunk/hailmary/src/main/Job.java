@@ -66,6 +66,7 @@ public class Job {
 	 */
 	public boolean isComplete()
 	{
+		//System.out.println("got here");
 		if(currentLine >= lines.length)
 			return true;
 		return false;
@@ -84,13 +85,13 @@ public class Job {
 	 */
 	public void proccessLine()
 	{
-		if(lines[currentLine].getName().equals("proccess-command"))
+		if(lines[currentLine].getName().equals("process-command"))
 		{
 			currentLine++;
 		}
 		else if(lines[currentLine].getName().equals("loop-for"))
 		{
-			if (lines[currentLine].iArg[1]-- < 0)
+			if (lines[currentLine].iArg[1]-- >= 0)
 			{
 				currentLine = lines[currentLine].iArg[0];
 			}
@@ -102,6 +103,13 @@ public class Job {
 		else if(lines[currentLine].getName().equals("device-call"))
 		{
 			//finish this logic
+			//fix this
+			//fix this
+			//fix this
+			//fix this
+			//fix this
+			//fix this
+			currentLine++;
 		}
 	}
 }
