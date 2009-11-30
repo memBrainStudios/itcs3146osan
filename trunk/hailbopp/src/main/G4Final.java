@@ -14,6 +14,7 @@ public class G4Final {
 	public static Device[] dList;
 	public static Computer setup;
 	public static String analysis;
+	public static String finalAnalysis;
 	private static boolean detailedAnalysis = true;
 	
 	public static ProcessManager pm;
@@ -75,7 +76,7 @@ public class G4Final {
 		addAnalysis(setup.basicInfoString());
 		addAnalysis(setup.deviceInfoString());
 		runSetup();
-		System.out.println(analysis);
+		System.out.println(finalAnalysis);
 	}
 	
 	/*
@@ -86,6 +87,8 @@ public class G4Final {
 		//will run the current setup and provide an analysis
 		int cpuCycle=0;
 		int currentJob=pm.loadJob(cpuCycle);
+		int memMissCounter=0;
+		int cacheMissCounter=0;
 		do
 		{
 			//for(long i=0;i<50000000;i++);
@@ -119,6 +122,7 @@ public class G4Final {
 				}
 				else
 				{
+					cacheMissCounter++;
 					addDetailedAnalysis("Asked the memory manager to load in line " +
 							jList[currentJob].currentLine +
 							" of job " +
@@ -137,6 +141,8 @@ public class G4Final {
 			}
 			else 
 			{
+				cacheMissCounter++;
+				memMissCounter++;
 				addDetailedAnalysis("Asked the memory manager to load in line " +
 						jList[currentJob].currentLine +
 						" of job " +
@@ -148,6 +154,7 @@ public class G4Final {
 			{
 				addDetailedAnalysis("Job number " + currentJob + " is Complete");
 				addAnalysis("Job number " + currentJob + " finished in " + cpuCycle + " CPU cycles.");
+				addFinalAnalysis("Job number " + currentJob + " finished in " + cpuCycle + " CPU cycles.");
 				pm.jobFinished(currentJob);
 				if(!jobsComplete())
 				{
@@ -159,6 +166,8 @@ public class G4Final {
 			//update cpuCycle
 			cpuCycle++;
 		}while(!jobsComplete());
+		addFinalAnalysis("Memory Miss Count: " + memMissCounter);
+		addFinalAnalysis("Cache Miss Count: " + cacheMissCounter);
 	}
 	
 	/*
@@ -184,6 +193,14 @@ public class G4Final {
 	{
 		System.out.println(newLine);
 		analysis += "\n" + newLine;
+	}
+	
+	/*
+	 * A way to add a line to the analysis printout
+	 */
+	private static void addFinalAnalysis(String newLine)
+	{
+		finalAnalysis += "\n" + newLine;
 	}
 	
 	/*
