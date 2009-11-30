@@ -38,7 +38,7 @@
     */
        public boolean lineInCache(int jobNumber, int lineNumber)
       {
-         String temp = "" + jobNumber + " " + lineNumber;
+         String temp = "" + jobNumber + " 0" + lineNumber;
         
          for(String s: cacheIndex)
          {
@@ -53,10 +53,10 @@
     */
        public boolean lineInMemory(int jobNumber, int lineNumber)
       {
-    	   String temp = "" + jobNumber + " " + lineNumber;
+    	   String temp = "" + jobNumber + " 0" + lineNumber;
          for(String s : memoryIndex)
          {
-        	if(s.equals(temp))
+        	if(s!=null && s.equals(temp))
         	  return true;
         	
          }
