@@ -17,7 +17,7 @@
          comp = inComp;
          cacheIndex = new String[comp.cache.length];
          memoryIndex = new String[comp.memory.length];
-         memLastLoaded = new int[comp.cache.length/50];
+         memLastLoaded = new int[comp.memory.length/50];
          cacheLastLoaded = new int[comp.cache.length/50];
          for(int i = 0; i < cacheIndex.length; i++)
          {
@@ -74,7 +74,7 @@
     		   if(G4Final.jList[jobNumber].numLines()>ln+i)
     		   {
     			   comp.memory[lru(memLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(ln+i);
-    			   memoryIndex[lru(cacheLastLoaded)*50+i]= "" + jobNumber + " " + (ln+i);
+    			   memoryIndex[lru(memLastLoaded)*50+i]= "" + jobNumber + " " + (ln+i);
     		   }
     	   }
     	   for(int i=0; i < memLastLoaded.length; i++)
