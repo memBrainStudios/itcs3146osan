@@ -48,11 +48,11 @@ process-command
 process-command
 process-command
 process-command
-loop-for 49 100
 process-command
 process-command
 process-command
 process-command
+loop-for 52 100
 process-command
 process-command
 process-command
