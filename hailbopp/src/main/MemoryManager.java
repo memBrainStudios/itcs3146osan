@@ -38,7 +38,7 @@
     */
        public boolean lineInCache(int jobNumber, int lineNumber)
       {
-         String temp = "" + jobNumber + " 0" + lineNumber;
+         String temp = "" + jobNumber + " " + lineNumber;
         
          for(String s: cacheIndex)
          {
@@ -53,7 +53,7 @@
     */
        public boolean lineInMemory(int jobNumber, int lineNumber)
       {
-    	   String temp = "" + jobNumber + " 0" + lineNumber;
+    	   String temp = "" + jobNumber + " " + lineNumber;
          for(String s : memoryIndex)
          {
         	if(s!=null && s.equals(temp))
@@ -74,7 +74,7 @@
     		   if(G4Final.jList[jobNumber].numLines()>ln+i)
     		   {
     			   comp.memory[lru(memLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(ln+i);
-    			   memoryIndex[lru(cacheLastLoaded)*50+i]= "" + jobNumber + " " + ln+i;
+    			   memoryIndex[lru(cacheLastLoaded)*50+i]= "" + jobNumber + " " + (ln+i);
     		   }
     	   }
     	   for(int i=0; i < memLastLoaded.length; i++)
@@ -96,7 +96,7 @@
     		   if(G4Final.jList[jobNumber].numLines()>ln+i)
     		   {
     			   comp.cache[lru(cacheLastLoaded)*50+i]= G4Final.jList[jobNumber].getLine(ln+i);
-    			   cacheIndex[lru(cacheLastLoaded)*50+i]= "" + jobNumber + " " + ln+i;
+    			   cacheIndex[lru(cacheLastLoaded)*50+i]= "" + jobNumber + " " + (ln+i);
     		   }
     	   }
     	   for(int i=0; i < cacheLastLoaded.length; i++)
