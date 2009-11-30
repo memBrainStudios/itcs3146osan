@@ -101,16 +101,35 @@ public class G4Final {
 			//else start the process of getting it there
 			else if(mm.lineInMemory(currentJob, jList[currentJob].currentLine))
 			{
-				mm.loadToCache(currentJob, jList[currentJob].currentLine);
-				addDetailedAnalysis("Asked the memory manager to load in line " +
+				if(cpuCycle%setup.memAccessTime == 0)
+				{
+					mm.loadToCache(currentJob, jList[currentJob].currentLine);
+					addDetailedAnalysis("The memory manager loaded in line " +
+							jList[currentJob].currentLine +
+							" of job " +
+							currentJob +
+							" from main memory into cache memory");
+				}
+				else
+				{
+					addDetailedAnalysis("Asked the memory manager to load in line " +
+							jList[currentJob].currentLine +
+							" of job " +
+							currentJob +
+							" from main memory into cache memory");
+				}
+			}
+			else if(cpuCycle%setup.storageAccessTime == 0)
+			{
+				mm.loadToMemory(currentJob, jList[currentJob].currentLine);
+				addDetailedAnalysis("The memory manager loaded in line " +
 						jList[currentJob].currentLine +
 						" of job " +
 						currentJob +
-						" from main memory into cache memory");
+						" from secondary storage into the main memory");
 			}
-			else
+			else 
 			{
-				mm.loadToMemory(currentJob, jList[currentJob].currentLine);
 				addDetailedAnalysis("Asked the memory manager to load in line " +
 						jList[currentJob].currentLine +
 						" of job " +
